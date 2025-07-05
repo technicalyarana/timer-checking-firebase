@@ -937,7 +937,7 @@ app.delete('/timer/:id', async (req, res) => {
 
 // Timer Scheduler - Your existing logic remains unchanged
 schedule.scheduleJob('*/1 * * * *', async () => {
-  const now = moment().tz('Asia/Kolkata');
+  const now = moment().tz('Asia/Dubai');
   const currentDay = now.day() - 1;
   console.log('⏰ Checking timers at:', now.format('YYYY-MM-DD HH:mm:ss'));
 
@@ -956,9 +956,9 @@ schedule.scheduleJob('*/1 * * * *', async () => {
     for (const [id, timer] of Object.entries(timers)) {
       if (!timer.active || !timer.days || !timer.days[currentDay]) continue;
 
-      const start = moment.tz(`${now.format('YYYY-MM-DD')} ${timer.startTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Kolkata');
+      const start = moment.tz(`${now.format('YYYY-MM-DD')} ${timer.startTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Dubai');
       const end = timer.endTime
-        ? moment.tz(`${now.format('YYYY-MM-DD')} ${timer.endTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Kolkata')
+        ? moment.tz(`${now.format('YYYY-MM-DD')} ${timer.endTime}`, 'YYYY-MM-DD HH:mm', 'Asia/Dubai')
         : null;
       if (end && end.isBefore(start)) end.add(1, 'day');
 
